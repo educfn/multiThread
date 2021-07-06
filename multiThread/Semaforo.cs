@@ -7,10 +7,25 @@ using System.Threading.Tasks;
 namespace multiThread
 {
     public static class Semaforo
-    {     
-        public static List<int> lista { get; set; }
+    {
+        private static List<SimpleClass> Lista = new List<SimpleClass>();
 
-        public List<int> 
+        public static void addItem(SimpleClass simples) 
+        {
+            Lista.Add(simples);
+        }
+
+        public static SimpleClass removeItem(SimpleClass simples)
+        {
+            SimpleClass tmp = Lista[0];
+            Lista.Remove(tmp);
+            return tmp;
+        }
+
+        public static int Count()
+        {
+            return Lista.Count;
+        }
     }
     
 }

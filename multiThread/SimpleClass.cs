@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace multiThread
 {
-    class SimpleClass
+    public class SimpleClass
     {
+
 
         public int numeroQualquer { get; set; }
         public string stringQualquer { get; set; }
