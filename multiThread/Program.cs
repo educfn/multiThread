@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -10,16 +11,21 @@ namespace multiThread
         {
             SimpleClass classeSimples = new SimpleClass();
 
+            coletarValoresDoUsuario(ref classeSimples);
+            
+
+            /*
             test(ref classeSimples);
             escreverClasseNoConsole(classeSimples);
 
             criarTextoJSON(classeSimples);
             criarTextoNomeVariavel(classeSimples);
+            printarJSON_No_Console(classeSimples);*/
 
         }
 
         #region coleta_valores_do_usuario
-        public void coletarValoresDoUsuario(ref SimpleClass simple)
+        public static void coletarValoresDoUsuario(ref SimpleClass simple)
         {
             if (simple == null)
             {
@@ -83,8 +89,13 @@ namespace multiThread
 
         static async Task printarJSON_No_Console(SimpleClass simple)
         {
-            //TODO: Preencher o metodo 'printarJSON_No_Console' este metodo deve "printar" no console a classe no formato JSON.
-            throw new NotImplementedException();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(simple);
+
+            foreach (var caracter in json)
+            {
+                if (caracter == ',') Console.Write("\n");
+                else Console.Write(caracter);
+            }
         }
 
         #endregion metodos async
