@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace multiThread
 
             criarTextoJSON(classeSimples);
             criarTextoNomeVariavel(classeSimples);
+            printarJSON_No_Console(classeSimples);
 
         }
 
@@ -83,8 +85,13 @@ namespace multiThread
 
         static async Task printarJSON_No_Console(SimpleClass simple)
         {
-            //TODO: Preencher o metodo 'printarJSON_No_Console' este metodo deve "printar" no console a classe no formato JSON.
-            throw new NotImplementedException();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(simple);
+
+            foreach (var caracter in json)
+            {
+                if (caracter == ',') Console.Write("\n");
+                else Console.Write(caracter);
+            }
         }
 
         #endregion metodos async
