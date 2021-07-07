@@ -14,6 +14,7 @@ namespace multiThread
             escreverClasseNoConsole(classeSimples);
 
             criarTextoJSON(classeSimples);
+            criarTextoNomeVariavel(classeSimples);
 
         }
 
@@ -42,11 +43,11 @@ namespace multiThread
         #region metodos async
         static async Task criarTextoJSON(SimpleClass simple)
         {
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(simple);
-
-            string caminho = @"C:\Users\Eduardo CFN\Desktop\",
-                //TODO: Qualidade: Perguntar ao usuario aonde quer salvar. Usar função que mostra o caminho para salvar.
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(simple),
+                //TODO: Qualidade: Perguntar ao usuario aonde quer salvar e o nome do arquivo. Usar função que mostra o caminho para salvar.
+                   caminho = @"C:\Users\Eduardo CFN\Desktop\",
                    nomeDoArquivo = "json.txt";
+                //TODO: Qualidade: Criar um 'loop' para ler a string 'json' e colocar o simbolo '\n' após toda virgula na string.
             try
             {
                 File.WriteAllText(caminho + nomeDoArquivo, json);              
@@ -60,8 +61,24 @@ namespace multiThread
 
         static async Task criarTextoNomeVariavel(SimpleClass simple)
         {
-            //TODO: Preencher o metodo 'criarTextoNomeVariavel' para gerar .txt da seguinte forma: 'NomeVariavel:ValorVariavel'.
-            throw new NotImplementedException();
+            string texto = "",
+                   caminho = @"C:\Users\Eduardo CFN\Desktop\",
+                   //TODO: Qualidade: Perguntar ao usuario aonde quer salvar. Usar função que mostra o caminho para salvar.
+                   nomeDoArquivo = "NomeVariavel_VariavelNome.txt";
+
+            texto = "InteiroQualquer:" + simple.InteiroQualquer + "\n"+
+                    "FloatQualquer:" + simple.FloatQualquer + "\n" +
+                    "DoubleQualquer:" + simple.DoubleQualquer + "\n" +
+                    "CharQualquer:" + simple.CharQualquer + "\n" +
+                    "StringQualquer:" + simple.StringQualquer + "\n";
+
+            try
+            {
+                File.WriteAllText(caminho + nomeDoArquivo, texto);
+            }
+            catch (Exception) { }
+
+            await Task.Delay(1);
         }
 
         static async Task printarJSON_No_Console(SimpleClass simple)
@@ -98,9 +115,9 @@ namespace multiThread
 
             simple.StringQualquer = temp;
             //Float Aleatorio
-            simple.FloatQualquer =  (float) rand.Next(int.MinValue, int.MaxValue) + (float) rand.NextDouble();
+            simple.FloatQualquer =  (float) ( rand.Next(int.MinValue, int.MaxValue) + rand.NextDouble() );
             //Double Aleatorio
-            simple.DoubleQualquer = (double)rand.Next(int.MinValue, int.MaxValue) + rand.NextDouble();
+            simple.DoubleQualquer = (double) rand.Next(int.MinValue, int.MaxValue) + rand.NextDouble();
             //Char Aleatorio
             simple.CharQualquer = (char) rand.Next(charaterMinUnicode, charaterMaxUnicode);
 
