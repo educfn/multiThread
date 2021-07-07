@@ -10,7 +10,7 @@ namespace multiThread
     {
 
 
-        public int numeroQualquer { get; set; }
+        public int inteiroQualquer { get; set; }
         public string stringQualquer { get; set; }
         public float floatQualquer { get; set; }
         public double doubleQualquer { get; set; }
