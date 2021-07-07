@@ -10,10 +10,10 @@ namespace multiThread
     {
 
 
-        public int inteiroQualquer { get; set; }
-        public string stringQualquer { get; set; }
-        public float floatQualquer { get; set; }
-        public double doubleQualquer { get; set; }
-        public char charQualquer { get; set; }
+        public int InteiroQualquer { get; set; }
+        public string StringQualquer { get; set; }
+        public float FloatQualquer { get; set; }
+        public double DoubleQualquer { get; set; }
+        public char CharQualquer { get; set; }
     }
 }

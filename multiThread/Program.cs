@@ -9,9 +9,11 @@ namespace multiThread
         {
             SimpleClass classeSimples = new SimpleClass();
 
-            Console.WriteLine("Hello World!");
+            test(ref classeSimples);
+            escreverClasseNoConsole(classeSimples);
         }
 
+        #region coleta_valores_do_usuario
         public void coletarValoresDoUsuario(ref SimpleClass simple)
         {
             if (simple == null)
@@ -20,17 +22,18 @@ namespace multiThread
             }
 
             Console.WriteLine("\nDigite um numero inteiro: ");
-            simple.inteiroQualquer = int.Parse(Console.ReadLine());
+            simple.InteiroQualquer = int.Parse(Console.ReadLine());
             Console.WriteLine("Digite um texto: ");
-            simple.stringQualquer = Console.ReadLine();
+            simple.StringQualquer = Console.ReadLine();
             Console.WriteLine("Digite um numero decimal: ");
-            simple.floatQualquer = float.Parse(Console.ReadLine());
+            simple.FloatQualquer = float.Parse(Console.ReadLine());
             Console.WriteLine("Digite outro numero decimal: ");
-            simple.doubleQualquer = double.Parse(Console.ReadLine());
+            simple.DoubleQualquer = double.Parse(Console.ReadLine());
             Console.WriteLine("Digite uma letra, numero[0-9] ou simbolo: ");
             string tempString = Console.ReadLine();
-            simple.charQualquer = tempString[0];
+            simple.CharQualquer = tempString[0];
         }
+        #endregion coleta_valores_do_usuario
 
         #region metodos async
         static async Task criarTextoJSON(SimpleClass simple)
@@ -53,7 +56,57 @@ namespace multiThread
 
         #endregion metodos async
 
-        //TO DO: Criar metodo 'test', o mesmo ira preencher, com valores aleatórios, uma instancia da classe 'SimpleClass' que será recebida e 'retornara' a mesma.
+        #region metodos_de_teste
+        //TO DO: Criar metodo 'test', o mesmo ira preencher, com valores aleatórios, uma instancia da classe 'SimpleClass' que será recebida por referencia.
+        public static void test(ref SimpleClass simple)
+        {
+            if (simple == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            Random rand = new Random();
+
+            int charaterMaxUnicode = 'a', charaterMinUnicode = 'Z',
+                ascii_digitos_comeco = 48, ascii_alfabeto_latino_fim = 122;
+
+            //Inteiro Aleatorio
+            simple.InteiroQualquer = rand.Next(int.MinValue, int.MaxValue);
+            //string Aleatorio
+            string temp = "";
+
+            for (int i = 0; i < rand.Next(0, 50); i++) 
+            {
+                temp += (char)rand.Next(ascii_digitos_comeco, ascii_alfabeto_latino_fim);
+            }
+
+            simple.StringQualquer = temp;
+            //Float Aleatorio
+            simple.FloatQualquer =  (float) rand.Next(int.MinValue, int.MaxValue) + (float) rand.NextDouble();
+            //Double Aleatorio
+            simple.DoubleQualquer = (double)rand.Next(int.MinValue, int.MaxValue) + rand.NextDouble();
+            //Char Aleatorio
+            simple.CharQualquer = (char) rand.Next(charaterMinUnicode, charaterMaxUnicode);
+
+
+
+    }
+
+        public static void escreverClasseNoConsole(SimpleClass simple) 
+        {
+            if (simple == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            Console.WriteLine("Inteiro Qualquer: " + simple.InteiroQualquer);
+            Console.WriteLine("Float Qualquer: " + simple.FloatQualquer);
+            Console.WriteLine("Double Qualquer: " + simple.DoubleQualquer);
+            Console.WriteLine("Char Qualquer: " + simple.CharQualquer);
+            Console.WriteLine("string qualquer: " + simple.StringQualquer);
+        }
+
+        #endregion metodos_de_teste
 
     }
 }
