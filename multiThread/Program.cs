@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace multiThread
@@ -11,6 +12,9 @@ namespace multiThread
 
             test(ref classeSimples);
             escreverClasseNoConsole(classeSimples);
+
+            criarTextoJSON(classeSimples);
+
         }
 
         #region coleta_valores_do_usuario
@@ -38,26 +42,38 @@ namespace multiThread
         #region metodos async
         static async Task criarTextoJSON(SimpleClass simple)
         {
-            //TO DO: Preencher o metodo 'criarTextoJSON' para gerar .txt em JSON. Usar a extensão 'Newtonsoft'.
-            throw new NotImplementedException();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(simple);
+
+            string caminho = @"C:\Users\Eduardo CFN\Desktop\",
+                //TODO: Qualidade: Perguntar ao usuario aonde quer salvar. Usar função que mostra o caminho para salvar.
+                   nomeDoArquivo = "json.txt";
+            try
+            {
+                File.WriteAllText(caminho + nomeDoArquivo, json);              
+            }
+            catch (Exception) { }
+
+            await Task.Delay(1);
+
+            
         }
 
         static async Task criarTextoNomeVariavel(SimpleClass simple)
         {
-            //TO DO: Preencher o metodo 'criarTextoNomeVariavel' para gerar .txt da seguinte forma: 'NomeVariavel:ValorVariavel'.
+            //TODO: Preencher o metodo 'criarTextoNomeVariavel' para gerar .txt da seguinte forma: 'NomeVariavel:ValorVariavel'.
             throw new NotImplementedException();
         }
 
         static async Task printarJSON_No_Console(SimpleClass simple)
         {
-            //TO DO: Preencher o metodo 'printarJSON_No_Console' este metodo deve "printar" no console a classe no formato JSON.
+            //TODO: Preencher o metodo 'printarJSON_No_Console' este metodo deve "printar" no console a classe no formato JSON.
             throw new NotImplementedException();
         }
 
         #endregion metodos async
 
         #region metodos_de_teste
-        //TO DO: Criar metodo 'test', o mesmo ira preencher, com valores aleatórios, uma instancia da classe 'SimpleClass' que será recebida por referencia.
+        //TODO: Criar metodo 'test', o mesmo ira preencher, com valores aleatórios, uma instancia da classe 'SimpleClass' que será recebida por referencia.
         public static void test(ref SimpleClass simple)
         {
             if (simple == null)
@@ -104,6 +120,8 @@ namespace multiThread
             Console.WriteLine("Double Qualquer: " + simple.DoubleQualquer);
             Console.WriteLine("Char Qualquer: " + simple.CharQualquer);
             Console.WriteLine("string qualquer: " + simple.StringQualquer);
+            //Criando um expaço para os proximos output´s.
+            Console.Write("\n\n");
         }
 
         #endregion metodos_de_teste
