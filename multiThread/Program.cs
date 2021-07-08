@@ -39,7 +39,8 @@ namespace multiThread
         static async Task mainASync()
         {
             //TODO: Qualidade: Perguntar ao usuario aonde quer salvar e o nome do arquivo. Usar função que mostra o caminho para salvar.
-            const string localParaSalvarArquivos = "C:\\Users\\Eduardo CFN\\Desktop\\Pasta_de_Textos\\";
+            const string localParaSalvarArquivos = "C:\\Users\\Eduardo CFN\\Desktop\\Pasta_de_Textos\\"; //<<<====Guilherme altere aqui===============
+            int quantidadeDeClassesParaCriar = 10;                                                      //<<<====Guilherme altere aqui================
             bool primeiraVez = true;
             int quantidadeDeClassesParaProcessar = 0;
 
@@ -57,7 +58,7 @@ namespace multiThread
 
                 if (primeiraVez == true && Semaforo.Count() == 0)
                 {
-                    test_criarEAdicionarListaSimpleClass(1);
+                    test_criarEAdicionarListaSimpleClass(quantidadeDeClassesParaCriar);
                     primeiraVez = false;
                     quantidadeDeClassesParaProcessar = Semaforo.Count();
                 } 
